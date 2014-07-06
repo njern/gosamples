@@ -44,14 +44,14 @@ func main() {
 		log.Fatalf("Failed writing data to disk. Error was '%s'", err)
 	}
 
-	// Now we can read it back in
+	// Now we can read it back in and put it in a buffer
 	file, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Fatalf("Failed to read file: %v", err)
 	}
-
-	// Create the read buffer & decoder...
 	buffer = bytes.NewBuffer(file)
+
+	// Then just put it in a decoder
 	decoder := gob.NewDecoder(buffer)
 
 	var samePeople []Person
